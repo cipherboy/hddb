@@ -1,0 +1,5 @@
+bin/*
+!bin/.keep
+
+db/*
+!db/.keep
