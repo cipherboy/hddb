@@ -47,4 +47,9 @@ func main() {
 			src.ImportFile(file, date, basepath)
 		}
 	}
+
+	if ignore != "" {
+		fmt.Println("Ignoring files...")
+		src.IgnoreFiles([]string{ignore})
+	}
 }

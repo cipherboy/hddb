@@ -36,10 +36,10 @@ func ImportFile(file string, date string, bp string) {
 
 		for i, _ := range value {
 			if fields[i] == "filename" {
-				value[i] = path.Join(basepath, value[i])
+				value[i] = strings.TrimSpace(path.Join(basepath, value[i]))
 			}
 		}
-		InsertDB(tx, fields, value)
+		insertDB(tx, fields, value)
 	}
 
 	tx.Commit()
