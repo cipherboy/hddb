@@ -1,13 +1,12 @@
-package src
-
+package main
 
 import (
-"strings"
-"os"
-"bufio"
-"path"
-"log"
-"fmt"
+	"bufio"
+	"fmt"
+	"log"
+	"os"
+	"path"
+	"strings"
 )
 
 func ImportFile(file string, date string, bp string) {
@@ -82,4 +81,3 @@ func ParseFile(file string, date string, bp string) (string, []string, [][]strin
 
 	return basepath, fields, lines
 }
-

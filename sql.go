@@ -1,9 +1,9 @@
-package src
+package main
 
 import (
-"database/sql"
-"strings"
-"log"
+	"database/sql"
+	"log"
+	"strings"
 )
 
 func insertDB(tx *sql.Tx, fields []string, file []string) {

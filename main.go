@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"os"
 	"time"
-	"github.com/cipherboy/hddb/src"
 )
 
 func main() {
@@ -30,8 +29,8 @@ func main() {
 		return
 	}
 
-	src.ConnectDB(db)
-	defer src.DB.Close()
+	ConnectDB(db)
+	defer DB.Close()
 
 	if file != "" {
 		if _, err := os.Stat(file); err == nil {
@@ -44,12 +43,12 @@ func main() {
 
 			fmt.Println("date:", date)
 
-			src.ImportFile(file, date, basepath)
+			ImportFile(file, date, basepath)
 		}
 	}
 
 	if ignore != "" {
 		fmt.Println("Ignoring files...")
-		src.IgnoreFiles([]string{ignore})
+		IgnoreFiles([]string{ignore})
 	}
 }

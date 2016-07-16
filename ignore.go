@@ -1,8 +1,8 @@
-package src
+package main
 
 import (
-"log"
-"fmt"
+	"fmt"
+	"log"
 )
 
 func IgnoreFiles(files []string) {
