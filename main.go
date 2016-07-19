@@ -29,7 +29,7 @@ func main() {
 		return
 	}
 
-	ConnectDB(db)
+	connectDB(db)
 	defer DB.Close()
 
 	if file != "" {
@@ -50,5 +50,10 @@ func main() {
 	if ignore != "" {
 		fmt.Println("Ignoring files...")
 		IgnoreFiles([]string{ignore})
+	}
+
+	if check {
+		fmt.Println("Checking files...")
+		CheckAllFiles()
 	}
 }

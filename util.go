@@ -2,38 +2,36 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
-	"log"
-	"os"
-	"os/user"
-	"path"
+	"time"
 )
 
 import _ "github.com/mattn/go-sqlite3"
 
-var DB *sql.DB
+var DB *sql.DB = nil
 
-func ConnectDB(db string) {
-	var err error
+type FileList struct {
+	FileName string
+	Ignored  bool
+}
 
-	if db == "~/.hddb/main.db" {
-		usr, err := user.Current()
-		if err != nil {
-			log.Fatal("Unable to get current user: ", err)
-		}
+type iFileHashes struct {
+	Size      uint64
+	MD5       []byte
+	SHA1      []byte
+	SHA256    []byte
+	Tiger     []byte
+	Whirlpool []byte
+	FileName  []byte
+	ScanDate  time.Time
+}
 
-		dir := usr.HomeDir
-		db = path.Join(dir, "/.hddb/")
-		os.Mkdir(db, 0750)
-		db = path.Join(db, "main.db")
-	}
-
-	fmt.Println("Database path:", db)
-	DB, err = sql.Open("sqlite3", db)
-	if err != nil {
-		log.Fatal("Unable to load database: ", err)
-	}
-
-	DB.Exec("CREATE TABLE IF NOT EXISTS files (size INTEGER, md5 STRING, sha1 STRING, sha256 STRING, tiger STRING, whirlpool STRING, filename STRING, scandate DATE);")
-	DB.Exec("CREATE TABLE IF NOT EXISTS ignored (filename STRING, ignored BOOLEAN);")
+type FileHashes struct {
+	Size      uint64
+	MD5       string
+	SHA1      string
+	SHA256    string
+	Tiger     string
+	Whirlpool string
+	FileName  string
+	ScanDate  time.Time
 }
